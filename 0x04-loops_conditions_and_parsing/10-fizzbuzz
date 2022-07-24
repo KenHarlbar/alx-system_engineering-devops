@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# This script displays numbers from 1 to 100
+#+ FizzBuzz
+
+count=0
+
+while (( count<100 )); do
+	(( count++ ))
+
+	fizz=$((count % 3))
+	buzz=$((count % 5))
+	if [ $fizz = 0 ] && [ $buzz = 0 ]
+	then
+		echo "FizzBuzz"
+	elif [ $fizz = 0 ]
+	then
+		echo "Fizz"
+	elif [ $buzz = 0 ]
+	then
+		echo "Buzz"
+	else
+		echo $count
+	fi
+done
