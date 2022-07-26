@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#This script displays its own PID
+
+ps ux | awk ' /0-what-is-my-pid/ {print $2} ' | head -n 1
