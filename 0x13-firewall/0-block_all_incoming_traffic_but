@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# install the ufw firewall and setup a few rules
+
+sudo apt install -y ufw
+sudo ufw default allow outgoing
+sudo ufw allow ssh
+sudo ufw allow https
+sudo ufw allow http
+sudo ufw enable
