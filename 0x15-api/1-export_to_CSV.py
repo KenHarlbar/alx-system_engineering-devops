@@ -16,17 +16,19 @@ if __name__ == '__main__':
     todo_list = requests.get('https://jsonplaceholder.typicode.com/todos',
                              params={'userId': user_id}).json()
 
+    csv_data = []
+    for each in todo_list:
+        my_dict = []
+        my_dict.append(user_id)
+        my_dict.append(username)
+        my_dict.append(each['completed'])
+        my_dict.append(each['title'])
+        csv_data.append(my_dict)
+
     # Compute the output
     with open('{}.csv'.format(user_id), mode='a') as csv_file:
-        fieldnames = ['user_id',
-                      'username',
-                      'task_completed_status',
-                      'task_title']
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames
-                                quotechar='"', quoting=csv.QUOTE_ALL)
-        writer.writeheader()
-        for each in todo_list:
-            writer.writerow({'user_id': user_id,
-                             'username': username,
-                             'task_completed_status': each['completed'],
-                             'task_title': each['title']})
+        user_writer = csv.writer(csv_file,
+                                 quotechar='"',
+                                 quoting=csv.QUOTE_ALL)
+        for each in csv_data:
+            user_writer.writerow(each)
